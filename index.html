@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TP FINAL</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <nav>
+      <img src="Images/iconImage.avif" alt="Logo" id="logo">
+      <button>Home</button>
+      <button id="addFilmButton">Ajouter un Film</button>
+      <select id="categorySelector">
+        <option value="default">Catégorie</option>
+        <option value="addCategory">Ajouter Catégorie</option>
+        <option value="updateCategory">Modifier Catégorie</option>
+        <option value="deleteCategory">Supprimer Catégorie</option>
+      </select>
+    </nav>
+    
+    <!-- Pour add film button -->
+    <div id="addFilmModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeAddFilmModal">&times;</span>
+        <p id="modalMessageAdd">Ajouter un film</p>
+        <div id="filmForm" class="hidden-film-form">
+          <form class="add-film-form-container">
+            <label for="name">Nom du film:</label>
+            <input type="text" id="name" name="name" required>
+    
+            <label for="author">Auteur:</label>
+            <input type="text" id="author" name="author" required>
+    
+            <label for="img">URL de l'image:</label>
+            <input type="text" id="img" name="img" required>
+    
+            <label for="category">Catégorie:</label>
+            <select id="category" name="category" required></select>
+    
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+    
+            <label for="trailerUrl">URL de la bande annonce:</label>
+            <input type="text" id="trailerUrl" name="trailerUrl" required>
+    
+            <button type="submit">Ajouter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add a modal for adding a category -->
+    <div id="addCategoryModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeAddCategoryModal()">&times;</span>
+        <label for="newCategoryName">New Category Name:<br>Merci de rafraîchir aprés avoir Ajouter une catégorie.</label>
+        <input type="text" id="newCategoryName" required>
+        <button onclick="addCategoryFromModal()">Add Category</button>
+      </div>
+    </div>
+
+     <!-- Modal for modify a category -->
+    <div id="modifyCategoryModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close" onclick="closeModifyCategoryModal()">&times;</span>
+        <label for="modifiedCategoryName">Modified Category Name:<br>Merci de rafraîchir aprés avoir modifier la catégorie.</label>
+        <select id="categorySelect">
+          <option value="all">Catégorie to Change</option>
+        </select>
+        <input type="text" id="modifiedCategoryName" required>
+        <button onclick="modifyCategoryFromModal()">Modify Category</button>
+      </div>
+    </div>
+
+        <!-- Modal for deleting a category -->
+    <div id="deleteCategoryModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close" onclick="closeDeleteCategoryModal()">&times;</span>
+        <label for="categorySelectForDeletion">Select Category to Delete:<br>Merci de rafraîchir aprés avoir supprimer la catégorie.</label>
+        <select id="categorySelectForDeletion">
+          <option value="all">Select Category</option>
+        </select>
+        <button onclick="deleteCategory()">Delete Category</button>
+      </div>
+    </div>
+
+    <div id="filterBar">
+      <!-- Barre de Recherche -->
+      <input type="text" id="searchInput" placeholder="Rechercher par titre">
+
+      <!-- Barre de filtre pour la catégorie -->
+      <select id="genreDropdown">
+        <option value="all">Tout les genres</option>
+      </select>
+
+      <!-- Filtre Avancées -->
+      <div id="sortButtons">
+        <label for="sortAuthor">Trier par Auteur :</label>
+        <select id="sortAuthor">
+          <option value="default">Trier par Auteur :</option>
+          <option value="sortAZAuthor">A-Z</option>
+          <option value="sortZAAuthor">Z-A</option>
+        </select>
+      
+        <label for="sortLikes">Trier par Likes :</label>
+        <select id="sortLikes">
+          <option value="default">Trier par Likes :</option>
+          <option value="sortLikesAsc">Like</option>
+          <option value="sortLikesDesc">Dislike</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="searchFilterContainer"></div> 
+
+    <!-- À l'intérieur de votre boucle de création de films -->
+    <div class="movieContainer"></div>
+
+    <!-- Afficher la liste des films -->
+    <div id="movieList"></div>
+
+    <!-- Nombre de film présent dans le Dom -->
+    <p id="searchMessage"></p>
+
+    <!-- Boîte modale -->
+    <div id="deleteEditModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeDeleteEditModal">&times;</span>
+        <p id="modalMessage">Voulez-vous supprimer ce film ?</p>
+        <div id="confirmationButtons">
+          <button id="confirmDelete" class="modal-button">Supprimer</button>
+          <button id="confirmYes" class="modal-button">Oui ce film il est nul</button>
+          <button id="confirmNo" class="modal-button">Non</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text No film -->
+    <div id="movieList"></div>
+    <p id="noMoviesMessage" style="display: none;">Pas de film trouvé</p>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

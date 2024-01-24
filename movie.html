@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP FINAL</title>
+  <link rel="stylesheet" href="movie.css">
+</head>
+<body>
+
+<header>
+  <h1 id="movieTitle"></h1>
+</header>
+
+<section id="movieDetails">
+  <div id="movieImage"></div>
+  <div id="movieInfo">
+    <p><strong>Auteur:</strong> <span id="movieAuthor"></span></p>
+    <p><strong>Catégorie:</strong> <span id="movieCategory"></span></p>
+    <p><strong>Description:</strong> <span id="movieDescription"></span></p>
+    <p>
+      <strong>Like:</strong> <span id="movieLikes"></span> 
+      <button id="likeButton" onclick="addLike()">Ajouter un Like</button>
+    </p>
+    <p>
+      <strong>Dislike:</strong> <span id="movieDislikes"></span> 
+      <button id="dislikeButton" onclick="addDislike()">Ajouter un Dislike</button>
+    </p>
+    <!-- Balise vidéo -->
+    <p><strong>Titre de la vidéo:</strong> <span id="movieVideoTitle"></span></p>
+    <button id="editButton" onclick="enableEditMode()">Éditer le film</button>
+  </div>
+</section>
+
+<form id="editForm" style="display: none;">
+  <label for="editTitle">Titre:</label>
+  <input type="text" id="editTitle" required>
+
+  <label for="editAuthor">Auteur:</label>
+  <input type="text" id="editAuthor" required>
+
+  <label for="editCategory">Catégorie:</label>
+  <input type="text" id="editCategory" required>
+
+  <label for="editDescription">Description:</label>
+  <textarea id="editDescription" required></textarea>
+
+  <label for="editVideoTitle">Titre de la vidéo:</label>
+  <input type="text" id="editVideoTitle">
+
+  <button type="button" onclick="saveChanges()">Enregistrer</button>
+  <button type="button" onclick="cancelEdit()">Annuler</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="movie.js"></script>
+</body>
+</html>

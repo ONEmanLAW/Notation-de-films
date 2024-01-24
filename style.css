@@ -1,0 +1,382 @@
+body {
+  background-color: black;
+  margin: 0;
+}
+
+nav {
+  background-color: #1b1919; 
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+#logo {
+  width: 60px;
+  height: 60px; 
+  margin-right: 10px; 
+}
+
+nav button {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  border-radius: 5px; 
+  transition: background-color 0.3s; 
+}
+
+nav button:hover {
+  background-color: #ffd700; 
+  color: black;
+}
+
+nav button + button {
+  margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#movieList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 40px;
+}
+
+.movieContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.movieImage {
+  width: 185px; 
+  height: 265px; 
+  margin-bottom: 5px;
+  border-radius: 5px; 
+}
+
+.movieName {
+  display: flex;
+  width: 100%;
+  max-width: 185px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.hidden-film-form {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.contextMenu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.contextMenu div {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.contextMenu div:hover {
+  background-color: #f2f2f2;
+}
+
+.settingsIcon {
+  width: 35px; 
+  height: 35px; 
+  position: absolute; 
+  top: 0;
+  right: 0; 
+  margin: 5px;
+  cursor: pointer; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#filterBar {
+  padding: 10px; 
+  text-align: center;
+  font-weight: bold; 
+}
+
+#searchInput {
+  width: 50%;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #FFFFE0; 
+  font-weight: bold; 
+}
+
+#searchFilterContainer {
+  color: white;
+}
+
+#genreDropdown {
+  width: 20%;
+  margin-left: 10px;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #FFFFE0;
+  font-weight: bold;
+}
+
+#searchMessage {
+  color: #ffffff;
+  font-weight: bold; 
+}
+
+
+/* Si on clique sur l'icon pour supprimer ou modifier un film */
+/* Style général pour les modals */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); 
+  transition: opacity 0.5s;
+}
+
+.modal-content {
+  background-color: #ffd633; 
+  margin: 10% auto;
+  padding: 20px;
+  border: 2px solid #ffcc00;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  max-width: 500px;
+  border-radius: 8px;
+  transition: transform 0.5s;
+  display: flex;
+  flex-direction: column;
+}
+
+.close {
+  color: #333;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Ajout de marge entre le bouton de fermeture et le contenu */
+.modal-content .close {
+  margin-bottom: 20px;
+}
+
+/* Effet de transition pour les modals */
+.modal {
+  transition: opacity 0.5s;
+}
+
+.modal-content {
+  transition: transform 0.5s;
+}
+
+/* Ajout de marge entre les boutons et le contenu du modal */
+.modal-content .modal-button {
+  margin-top: 10px;
+}
+
+/* Styles pour les boutons dans les modals */
+.modal-button {
+  background-color: #ffcc00;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.modal-button:hover {
+  background-color: #ffd633;
+}
+
+/* Style spécifique pour le formulaire "Ajouter un film" dans le modal */
+#filmForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: flex-start;
+  height: 100%; 
+}
+
+/* Centrer et augmenter la taille du texte "Ajouter un film" dans le modal */
+#modalMessageAdd {
+  text-align: center;
+  font-size: 24px; 
+}
+
+/* Style pour les labels dans le formulaire */
+.add-film-form-container label {
+  margin-bottom: 8px;
+  font-weight: bold; 
+}
+
+/* Style pour les input dans le formulaire */
+.add-film-form-container input {
+  margin-bottom: 16px;
+  padding: 8px;
+  width: 100%; 
+}
+
+/* Style pour la catégorie (select) dans le formulaire */
+.add-film-form-container select {
+  margin-bottom: 16px;
+  padding: 8px;
+  width: 100%;
+}
+
+/* Limiter la taille de la textarea en largeur et hauteur */
+.add-film-form-container textarea {
+  margin-bottom: 16px;
+  padding: 8px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 500px;
+  max-height: 80px;
+  min-height: 80px; 
+  overflow-y: auto; 
+}
+
+/* Style pour le bouton dans le formulaire */
+.add-film-form-container button {
+  background-color: black; 
+  color: white;
+  padding: 15px 30px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px; 
+  transition: background-color 0.3s;
+}
+
+.add-film-form-container button:hover {
+  background-color: #333; 
+}
+
+
+#searchMessage {
+  text-align: center; 
+  margin-top: 20px; 
+  font-size: 18px; 
+}
+
+/* Style du sélecteur de catégorie */
+#categorySelector {
+  padding: 8px;
+  font-size: 16px;
+  color: white;
+  background-color: black;
+}
+
+#categorySelector:hover {
+  color: black;
+  background-color: #ffd633;
+}
+
+
+#confirmDelete {
+  background-color: red; 
+  color: white;
+}
+
+#noMoviesMessage {
+  text-align: center; 
+  margin-top: 20px; 
+  font-size: 18px; 
+  color: red; 
+  display: none; 
+}
+
+#addFilmButtonWhenNoMovies {
+  background-color: #ffd633;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#currentPage {
+  color: white;
+}
+
+#sortButtons {
+  color: white;
+  margin-top: 20px;
+}
